@@ -1,6 +1,7 @@
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import static org.hamcrest.core.Is.is;
 
@@ -9,8 +10,10 @@ public class Application {
         System.setProperty("webdriver.chrome.driver", "src/chromedriver");
         String ip = System.getenv("TEST_SERVER_IP");
         System.out.println("Executing selenium tests on" + ip);
-        ChromeDriver chromeDriver = new ChromeDriver();
-        chromeDriver.get("http://"+ ip + ":1052/index.php");
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+        ChromeDriver chromeDriver = new ChromeDriver(chromeOptions);
+        chromeDriver.get("http://" + ip + ":1052/index.php");
         chromeDriver.manage().window().maximize();
         chromeDriver.findElement(By.id("About Us")).click();
         String aboutUsText = chromeDriver.findElement(By.id("PID-ab2-pg")).getText();
