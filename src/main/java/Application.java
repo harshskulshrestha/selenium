@@ -8,6 +8,7 @@ public class Application {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "src/chromedriver");
         String ip = System.getenv("TEST_SERVER_IP");
+        System.out.println("Executing selenium tests on" + ip);
         ChromeDriver chromeDriver = new ChromeDriver();
         chromeDriver.get("http://"+ ip + ":1052/index.php");
         chromeDriver.manage().window().maximize();
